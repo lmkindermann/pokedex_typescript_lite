@@ -1,4 +1,4 @@
-interface PokemonResume{
+export interface PokemonResume{
     id: number;
     name: string;
     height: number;
@@ -8,3 +8,5 @@ interface PokemonResume{
     attack: number;
     defense: number;
 }
+
+export interface PokemonApiResponse extends PokemonResume{}
