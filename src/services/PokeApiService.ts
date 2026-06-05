@@ -1,7 +1,7 @@
 import { type PokemonResume } from "../models/Pokemon";
-type PokeID = number | string
+export type PokeID = number | string
 
-async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
+export async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
     try{
         const url = "https://pokeapi.co/api/v2/pokemon/" + id
         const resposta = await fetch(url)
