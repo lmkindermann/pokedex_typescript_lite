@@ -34,15 +34,13 @@ export function removerDoCatalogo(
     id:number
 ) : void {
     if( lista.find(l => l.id === id) ) {
-        const position = lista.findIndex(l => l.id === id)
-        lista.splice(position,1)
+        catalogo = lista.filter(l => l.id != id)        
+        //const position = lista.findIndex(l => l.id === id)
+        //lista.splice(position,1)
         console.log(`[OK] Pokémon removido do catálogo.`)
     } else {
         console.log(`[AVISO] Nenhum Pokémon encontrado com esse ID.`)
     }
-    //buscar - se tiver: remover
-    // - se não tiver: avisar
-    // 
 }
 
 //Teste
@@ -64,21 +62,21 @@ export function removerDoCatalogo(
 // catalogoPokemon()
 
 //Teste 2
-// export async function catalogoPokemon() {
-//     listarCatalogo(catalogo)
-//     let resposta:any = await buscaPokemon(25)
-//     adicionarAoCatalogo(catalogo,resposta)
-//     resposta = await buscaPokemon(55)
-//     adicionarAoCatalogo(catalogo,resposta)
-//     resposta = await buscaPokemon(25)
-//     adicionarAoCatalogo(catalogo,resposta)
-//     listarCatalogo(catalogo)
-//     resposta = await buscaPokemon(5555)
-//     adicionarAoCatalogo(catalogo,resposta)
-//     removerDoCatalogo(catalogo,5555)
-//     listarCatalogo(catalogo)
-//     removerDoCatalogo(catalogo,55)
-//     listarCatalogo(catalogo)
-// }
-// catalogoPokemon()
+export async function catalogoPokemon() {
+    listarCatalogo(catalogo)
+    let resposta:any = await buscaPokemon(25)
+    adicionarAoCatalogo(catalogo,resposta)
+    resposta = await buscaPokemon(55)
+    adicionarAoCatalogo(catalogo,resposta)
+    resposta = await buscaPokemon(25)
+    adicionarAoCatalogo(catalogo,resposta)
+    listarCatalogo(catalogo)
+    resposta = await buscaPokemon(5555)
+    adicionarAoCatalogo(catalogo,resposta)
+    removerDoCatalogo(catalogo,5555)
+    listarCatalogo(catalogo)
+    removerDoCatalogo(catalogo,55)
+    listarCatalogo(catalogo)
+}
+catalogoPokemon()
 
