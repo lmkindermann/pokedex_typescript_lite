@@ -1,6 +1,5 @@
 import { type PokemonResume } from "../models/Pokemon"
-//descomentar para os testes:
-//import { buscaPokemon, type PokeID } from "../services/PokeApiService" 
+import { buscaPokemon, type PokeID } from "../services/PokeApiService" 
 
 export let catalogo: PokemonResume[] = [];
 
@@ -9,22 +8,42 @@ export function adicionarAoCatalogo(
     pokemon:PokemonResume
 ): void {
     if(pokemon === null){
-        console.log(`[ERRO] Entrada inválida.`)
+        console.log(`[ERRO] Entrada inválida: pokemon-inexistente`)
     }
     else if( lista.find((p:PokemonResume) => p.id === pokemon.id) ){
-        console.log(`[AVISO] ${pokemon.name} já está no catalogo.`)
+        console.log(`[AVISO] ${pokemon.name} já está no catálogo.`)
     } else {
         lista.push(pokemon)    
-        console.log(`[OK] ${pokemon.name} adicionado ao catalogo.`)
+        console.log(`[OK] ${pokemon.name} adicionado ao catálogo.`)
     }
 }
 
 export function listarCatalogo(lista: PokemonResume[]) : void {
-    lista.forEach(pokemon => {
-        console.log(`#${pokemon.id} - ${pokemon.name} | Tipos: ${pokemon.types} | Altura: ${pokemon.height} | Peso: ${pokemon.weight} | HP: ${pokemon.hp} | Ataque: ${pokemon.attack} | Defesa: ${pokemon.defense}`)
-    });
+    if( lista.length === 0){
+        console.log(`[AVISO] Catálogo vazio.`)
+    } else {    
+        console.log("Catálogo atual:")
+        lista.forEach(pokemon => {
+            console.log(`#${pokemon.id} - ${pokemon.name} | Tipos: ${pokemon.types} | Altura: ${pokemon.height} | Peso: ${pokemon.weight} | HP: ${pokemon.hp} | Ataque: ${pokemon.attack} | Defesa: ${pokemon.defense}`)
+        });
+    }
 }
 
+export function removerDoCatalogo(
+    lista:PokemonResume[], 
+    id:number
+) : void {
+    if( lista.find(l => l.id === id) ) {
+        const position = lista.findIndex(l => l.id === id)
+        lista.splice(position,1)
+        console.log(`[OK] Pokémon removido do catálogo.`)
+    } else {
+        console.log(`[AVISO] Nenhum Pokémon encontrado com esse ID.`)
+    }
+    //buscar - se tiver: remover
+    // - se não tiver: avisar
+    // 
+}
 
 //Teste
 // export async function catalogoPokemon() {
@@ -46,16 +65,20 @@ export function listarCatalogo(lista: PokemonResume[]) : void {
 
 //Teste 2
 // export async function catalogoPokemon() {
+//     listarCatalogo(catalogo)
 //     let resposta:any = await buscaPokemon(25)
-//     console.log(adicionarAoCatalogo(catalogo,resposta))
+//     adicionarAoCatalogo(catalogo,resposta)
 //     resposta = await buscaPokemon(55)
-//     console.log(adicionarAoCatalogo(catalogo,resposta))
+//     adicionarAoCatalogo(catalogo,resposta)
 //     resposta = await buscaPokemon(25)
-//     console.log(adicionarAoCatalogo(catalogo,resposta))
-//     console.log(catalogo)
+//     adicionarAoCatalogo(catalogo,resposta)
+//     listarCatalogo(catalogo)
 //     resposta = await buscaPokemon(5555)
-//     console.log(resposta)
-//     console.log(adicionarAoCatalogo(catalogo,resposta))
+//     adicionarAoCatalogo(catalogo,resposta)
+//     removerDoCatalogo(catalogo,5555)
+//     listarCatalogo(catalogo)
+//     removerDoCatalogo(catalogo,55)
+//     listarCatalogo(catalogo)
 // }
 // catalogoPokemon()
 
