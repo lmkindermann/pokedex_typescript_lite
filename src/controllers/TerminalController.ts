@@ -1,3 +1,4 @@
+import { CatalogError } from "../models/CustomErrors";
 import { type PokemonResume } from "../models/Pokemon"
 import { pokemonReport } from "../utils/textFormatters"
 
@@ -10,7 +11,8 @@ export class catalogoPokemon{
 
     adicionarAoCatalogo(pokemon:PokemonResume): void {
         if(pokemon === null){
-            console.log(`[ERRO] Entrada inválida: pokemon-inexistente`)
+            throw new CatalogError("[ERRO] Entrada inválida: pokemon-inexistente")
+            //console.log(`[ERRO] Entrada inválida: pokemon-inexistente`)
         }
         else if( this.catalogo.find((p:PokemonResume) => p.id === pokemon.id) ){
             console.log(`[AVISO] ${pokemon.name} já está no catálogo.`)

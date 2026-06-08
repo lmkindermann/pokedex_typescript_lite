@@ -8,5 +8,3 @@ export interface PokemonResume{
     attack: number;
     defense: number;
 }
-
-export interface PokemonApiResponse extends PokemonResume{}

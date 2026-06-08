@@ -1,4 +1,5 @@
 import { type PokemonResume } from "../models/Pokemon";
+import { APIError } from "../models/CustomErrors"
 export type PokeID = number | string
 
 export async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
@@ -6,9 +7,7 @@ export async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
         const url = "https://pokeapi.co/api/v2/pokemon/" + id
         const resposta = await fetch(url)
         if (!resposta.ok){
-            console.log("[ERRO] Pokémon não encontrado: pokemon-inexistente.")
-            return null           
-            //throw new Error(`Erro na requisição: ${resposta.status}`)
+            throw new APIError("[ERRO] Pokémon não encontrado: pokemon-inexistente.")                     
         }
         const dados = await resposta.json()
         const pokeData: PokemonResume = {
@@ -23,8 +22,9 @@ export async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
         }
         return pokeData
     } catch(error){
-        console.log("[ERRO] Não foi possível buscar o Pokémon.")
-        return null
-        //console.error("[ERRO] Não foi possível buscar o Pokémon.",error)        
+        if (error instanceof APIError){
+            throw error
+        }
+        throw new APIError('[ERRO] Não foi possível buscar o Pokémon. Falha de comunicação com API')     
     }
 }
