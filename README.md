@@ -111,11 +111,29 @@ pokedex-typescript-lite/
 
 # Comportamento esperado
 
+## Configuração inicial e Template para testes
+```
+import { catalogoPokemon } from "./controllers/TerminalController"
+import { fileService } from "./services/BoxService"
+import { buscaPokemon, type PokeID } from "./services/PokeApiService" 
+import { join } from 'path'
+
+async function main(){
+    let resposta: any
+    let pokeBag: PokeID[] = []
+    const filepath = join(__dirname, "../pc_box.json")
+    const cat = new catalogoPokemon()
+    const fs = new fileService(filepath)
+
+    // Aqui vai as Entradas Testadas dos comportamentos esperados //
+
+}
+main()
+```
+
 ## Busca Pokémon por nome ou ID
 ```
 Entrada testada: 
-- let resposta:any
-- const cat = new catalogoPokemon()
 - resposta = await buscaPokemon("pikachu")
 - cat.adicionarAoCatalogo(resposta)
 - resposta = await buscaPokemon(4)
@@ -128,8 +146,6 @@ Saída obtida:
 ## Busca inválida por pokémon inexistente
 ```
 Entrada testada:
-- let resposta:any
-- const cat = new catalogoPokemon()
 - resposta = await buscaPokemon(9999)
 - cat.adicionarAoCatalogo(resposta)
 Saída obtida:
@@ -139,7 +155,6 @@ Saída obtida:
 ## Busca inválida por falha de comunicação
 ```
 Entrada testada:
-- let resposta:any
 - resposta = await buscaPokemon("pikachu","https://pokeapiii.co/api/v2/pokemon/")
 Saída obtida:
 - APIError: [ERRO] Não foi possível buscar o Pokémon. Falha de comunicação com API.
@@ -148,8 +163,6 @@ Saída obtida:
 ## Duplicidade
 ```
 Entrada testada:
-- let resposta:any
-- const cat = new catalogoPokemon()
 - resposta = await buscaPokemon("pikachu")
 - cat.adicionarAoCatalogo(resposta)
 - resposta = await buscaPokemon(25)
@@ -162,8 +175,6 @@ Saída obtida:
 ## Remoção
 ```
 Entrada testada:
-- let resposta:any
-- const cat = new catalogoPokemon()
 - resposta = await buscaPokemon(133)
 - cat.adicionarAoCatalogo(resposta)
 - cat.removerDoCatalogo(133)
@@ -175,8 +186,6 @@ Saída obtida:
 ## Listar catálogo
 ```
 Entrada testada:
-- let resposta:any
-- const cat = new catalogoPokemon()
 - resposta = await buscaPokemon(1)
 - cat.adicionarAoCatalogo(resposta)
 - resposta = await buscaPokemon('7')
@@ -193,23 +202,35 @@ Saída obtida:
 ## Salvar catálogo em arquivo JSON
 ```
 Entrada testada:
-- const filepath = join(__dirname, "../pc_box.json")
-- const cat = new catalogoPokemon()
-- const fs = new fileService(filepath)
+- resposta = await buscaPokemon(1)
+- cat.adicionarAoCatalogo(resposta)
+- resposta = await buscaPokemon(4)
+- cat.adicionarAoCatalogo(resposta)
+- resposta = await buscaPokemon(7)
+- cat.adicionarAoCatalogo(resposta)
+- resposta = await buscaPokemon(25)
+- cat.adicionarAoCatalogo(resposta)
 - await fs.saveData(cat.catalogo)
 Saída obtida:
-- Catálogo salvo em C:\Users\Name\Documents\Github\pokedex_typescript_lite\pc_box.json
+- [OK] bulbasaur adicionado ao catálogo.
+- [OK] charmander adicionado ao catálogo.
+- [OK] squirtle adicionado ao catálogo.
+- [OK] pikachu adicionado ao catálogo.
+- Catálogo salvo em C:\Users\...\pokedex_typescript_lite\pc_box.json
 ```
 
 ## Carregar catálogo de arquivo JSON
 ```
 Entrada testada:
-- const filepath = join(__dirname, "../pc_box.json")
-- const cat = new catalogoPokemon()
-- const fs = new fileService(filepath)
 - cat.catalogo = await fs.readData()
+- cat.listarCatalogo()
 Saída obtida:
-- Catálogo carregado de C:\Users\Name\Documents\Github\pokedex_typescript_lite\pc_box.json
+- Catálogo carregado de C:\Users\...\pokedex_typescript_lite\pc_box.json
+- Catálogo atual:
+- #1 - bulbasaur | Tipos: grass,poison | Altura: 7 | Peso: 69 | HP: 45 | Ataque: 49 | Defesa: 49
+- #4 - charmander | Tipos: fire | Altura: 6 | Peso: 85 | HP: 39 | Ataque: 52 | Defesa: 43
+- #7 - squirtle | Tipos: water | Altura: 5 | Peso: 90 | HP: 44 | Ataque: 48 | Defesa: 65
+- #25 - pikachu | Tipos: electric | Altura: 4 | Peso: 60 | HP: 35 | Ataque: 55 | Defesa: 40
 ```
 
 # Conceitos aplicados
