@@ -2,9 +2,10 @@ import { type PokemonResume } from "../models/Pokemon";
 import { APIError } from "../models/CustomErrors"
 export type PokeID = number | string
 
-export async function buscaPokemon(id: PokeID): Promise<PokemonResume | null> {
+export async function buscaPokemon(id: PokeID, enter_url?: string): Promise<PokemonResume | null> {
     try{
-        const url = "https://pokeapi.co/api/v2/pokemon/" + id
+        let url:string = ''
+        enter_url !== undefined ? url = enter_url + id : url = "https://pokeapi.co/api/v2/pokemon/" + id      
         const resposta = await fetch(url)
         if (!resposta.ok){
             throw new APIError("[ERRO] Pokémon não encontrado: pokemon-inexistente.")                     

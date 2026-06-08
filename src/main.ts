@@ -4,7 +4,7 @@ import { buscaPokemon, type PokeID } from "./services/PokeApiService"
 import { join } from 'path'
 
 async function main(){
-    console.log("Welcome to the Pokédex TypeScript Lite")
+    console.log("Bem-vindo ao Pokédex TypeScript Lite")
     
     // Configuração inicial
     let resposta: any
@@ -80,6 +80,6 @@ async function main(){
     // resposta = await buscaPokemon("pikachu","https://pokeapiii.co/api/v2/pokemon/")
 
     // Caso contrário, a aplicação será encerrada aqui
-    console.log("Finishing PokeDex TypeScript Lite app")
+    console.log("Finalizando PokeDex TypeScript Lite")
 }
 main()
