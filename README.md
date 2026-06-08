@@ -228,18 +228,18 @@ Para evitar o processamento de valores indefinidos ou comportamentos inesperados
 
 - **Métodos de array**\
 Os métodos de array foram utilizados no projeto para diferentes finalidades, como:
-- filter: Para remoção de Pokémons do catálogo.
-- find: Para buscar informações específicas de Pokémons.
-- push: Para adicionar Pokémons no catálogo.
-- forEach: Para listar os Pokémons existentes no catálogo.
-- map: Para obter as informações de tipos de Pokémon.
+  - filter: Para remoção de Pokémons do catálogo.
+  - find: Para buscar informações específicas de Pokémons.
+  - push: Para adicionar Pokémons no catálogo.
+  - forEach: Para listar os Pokémons existentes no catálogo.
+  - map: Para obter as informações de tipos de Pokémon.
 
 - **Classe CatalogoPokemon**\
 Para manipular o catálogo Pokémon, foram criados os seguintes métodos:
-- adicionarAoCatalogo(): Método que permite adicionar ao catálogo, as informações obtidas em uma busca na PokeAPI.
-- listarCatalogo(): Retorna as informações armazenadas de todos os Pokémons cadastrados no catálogo.
-- removerDoCatalogo(): Método que permite remover do catálogo um Pokémon específico através de sua ID.
-- constructor(): Configura a inicialização de um novo catálogo na memória ao criar um novo objeto da classe.
+  - adicionarAoCatalogo(): Método que permite adicionar ao catálogo, as informações obtidas em uma busca na PokeAPI.
+  - listarCatalogo(): Retorna as informações armazenadas de todos os Pokémons cadastrados no catálogo.
+  - removerDoCatalogo(): Método que permite remover do catálogo um Pokémon específico através de sua ID.
+  - constructor(): Configura a inicialização de um novo catálogo na memória ao criar um novo objeto da classe.
 
 
 # Organização do Kanban
