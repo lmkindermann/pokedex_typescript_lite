@@ -1,4 +1,5 @@
 import { type PokemonResume } from "../models/Pokemon"
+import { pokemonReport } from "../utils/textFormatters"
 
 export class catalogoPokemon{
     catalogo: PokemonResume[] = [];
@@ -22,11 +23,8 @@ export class catalogoPokemon{
     listarCatalogo(): void {
         if( this.catalogo.length === 0){
             console.log(`[AVISO] Catálogo vazio.`)
-        } else {    
-            console.log("Catálogo atual:")
-            this.catalogo.forEach(pokemon => {
-                console.log(`#${pokemon.id} - ${pokemon.name} | Tipos: ${pokemon.types} | Altura: ${pokemon.height} | Peso: ${pokemon.weight} | HP: ${pokemon.hp} | Ataque: ${pokemon.attack} | Defesa: ${pokemon.defense}`)
-            });
+        } else {  
+            pokemonReport(this.catalogo)  
         }
     }
 
