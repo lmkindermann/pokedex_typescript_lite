@@ -11,9 +11,10 @@ export class fileService{
     async readData(): Promise<PokemonResume[]> {
         try {
             const fileContent: string = await readFile(this.json_file_path, 'utf-8')
+            console.log(`Catálogo carregado de ${this.json_file_path}`)
             return JSON.parse(fileContent)
-        } catch {
-            
+        } catch {            
+            console.log(`Novo catálogo inicializado`)
             return []
         }
     }
@@ -23,5 +24,6 @@ export class fileService{
             this.json_file_path,
             JSON.stringify(data, null, 2)
         )
+        console.log(`Catálogo salvo em ${this.json_file_path}`)
     }
 }

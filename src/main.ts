@@ -57,7 +57,7 @@ async function main(){
     cat.removerDoCatalogo(Number(pokeBag[4]))
     
     // Lista o catálogo Pokemon novamente
-    // Deve haver 3 Pokemons agora (ou menos)
+    // Deve haver até 3 dos Pokémons recém adicionados
     cat.listarCatalogo()
 
     // Salva o catálogo no arquivo JSON mapeado
